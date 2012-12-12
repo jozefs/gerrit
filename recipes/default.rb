@@ -124,13 +124,6 @@ end
 
 include_recipe "java"
 
-if !File.directory?(node['java']['java_home'])
-  Chef::Log.error "The file specified by the attribute java_home does not exist!"
-end
-
-ENV["JAVA_HOME"] = node['java']['java_home']
-
-
 ####################################
 # Deploy
 ####################################
