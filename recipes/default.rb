@@ -128,6 +128,12 @@ if !File.directory?(node['java']['java_home'])
   Chef::Log.error "The file specified by the attribute java_home does not exist!"
 end
 
+ruby_block  "set-env-java-home" do
+  block do
+    ENV["JAVA_HOME"] = node['java']['java_home']
+  end
+end
+
 ####################################
 # Deploy
 ####################################
