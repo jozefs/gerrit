@@ -125,7 +125,7 @@ end
 include_recipe "java"
 
 if !File.directory?(node['java']['java_home'])
-  Chef::Log.err "The file specified by the attribute java_home does not exist!"
+  Chef::Log.error "The file specified by the attribute java_home does not exist!"
 end
 
 ####################################
