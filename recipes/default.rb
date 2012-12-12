@@ -122,27 +122,16 @@ end
 # Java
 ####################################
 
+include_recipe "java"
 
-if platform?("debian") && !File.directory?(node['java']['java_home'])
-  Chef::Log.warn "java_home doesn't exist. Adjusting it"
-   
-  if node['lsb']['codename'] == "wheezy"
-    Chef::Log.info "Debian Wheezy, going for Java 7"
-    node['java']['jdk_version'] = "7"
-    node['java']['java_home'] = "/usr/lib/jvm/java-7-openjdk-amd64"
-  else
-    Chef::Log.info "Going for Java 6"
-    node['java']['java_home'] = "/usr/lib/jvm/java-6-openjdk"
-  end
+if !File.directory?(node['java']['java_home'])
+  Chef::Log.err "The file specified by the attribute java_home does not exist!"
 end
-
-
 
 ####################################
 # Deploy
 ####################################
 
-include_recipe "java"
 include_recipe "git"
 
 #directory "#{node['gerrit']['home']}/war" do
