@@ -21,6 +21,7 @@
 include_recipe "build-essential"
 include_recipe "mysql"
 include_recipe "mysql::server"
+include_recipe "mysql::ruby"
 include_recipe "database"
 
 # package "libmysql-java"
