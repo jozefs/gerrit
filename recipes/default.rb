@@ -162,7 +162,7 @@ execute "gerrit-init" do
   group node['gerrit']['group']
   cwd "#{node['gerrit']['home']}/war"
   command "java -jar #{filename} init --batch --no-auto-start -d #{node['gerrit']['install_dir']}"
-  not_if "test -d #{node['gerrit']['install_dir']}"
+  not_if "test -d #{node['gerrit']['install_dir']}/logs"
   notifies :restart, "service[gerrit]"
 end
 
