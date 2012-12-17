@@ -107,7 +107,13 @@ if node['gerrit']['database']['type'] == "MYSQL"
   include_recipe "gerrit::mysql"
 end
 
+####################################
+# Postgres
+####################################
 
+if node['gerrit']['database']['type'] == "POSTGRESQL"
+  include_recipe "gerrit::postgres"
+end
 
 ####################################
 # Proxy
