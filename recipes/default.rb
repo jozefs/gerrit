@@ -141,7 +141,7 @@ if node['gerrit']['flavor'] == "war"
   remote_file filename do
     owner node['gerrit']['user']
     source node['gerrit']['war']['download_url']
-    # checksum node['gerrit']['war']['checksum'][node['gerrit']['version']]
+    notifies :run, "bash[gerrit-init]", :immediately
     action :create_if_missing
   end
 else
@@ -153,6 +153,7 @@ else
     Chef::Log.info "Created " + filename
     user node['gerrit']['user']
     code "cp #{node['gerrit']['home']}/src/git/gerrit-war/target/gerrit-*.war #{filename}"
+    notifies :run, "bash[gerrit-init]", :immediately
     creates filename
   end
 end
@@ -162,7 +163,7 @@ execute "gerrit-init" do
   group node['gerrit']['group']
   cwd "#{node['gerrit']['home']}/war"
   command "java -jar #{filename} init --batch --no-auto-start -d #{node['gerrit']['install_dir']}"
-  not_if "test -d #{node['gerrit']['install_dir']}/logs"
+  action :nothing
   notifies :restart, "service[gerrit]"
 end
 
