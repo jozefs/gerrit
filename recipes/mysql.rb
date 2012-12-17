@@ -21,8 +21,12 @@
 include_recipe "mysql::server"
 include_recipe "database::mysql"
 
+if node['gerrit']['database']['host'] == "localhost" do
+  mysql_host = node['mysql']['bind_address']
+end
+
 mysql_connection_info = {
-  :host =>  "localhost",
+  :host =>  mysql_host,
   :username => "root",
   :password => node['mysql']['server_root_password']
 }
