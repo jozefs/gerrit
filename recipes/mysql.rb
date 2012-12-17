@@ -21,7 +21,7 @@
 include_recipe "mysql::server"
 include_recipe "database::mysql"
 
-if node['gerrit']['database']['host'] == "localhost" do
+if node['gerrit']['database']['host'] == "localhost"
   mysql_host = node['mysql']['bind_address']
 end
 
