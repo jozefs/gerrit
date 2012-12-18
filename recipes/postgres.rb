@@ -17,41 +17,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-
-# Default the locale to en_US.utf8. If not creating the table will fail
-include_recipe "locale"
-
-execute "Update locale" do
-  command "update-locale LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8"
-  action :run
-end
-
-ENV['LC_CTYPE'] = "en_US.UTF-8"
  
 include_recipe "postgresql::server"
-include_recipe "database::postgresql"
 
-postgresql_connection_info = {
-  :host =>  node['gerrit']['database']['host'],
-  :port => "5432",
-  :username => "postgres",
-  :password => node['postgresql']['password']['postgres']
-}
-
-postgresql_database_user node['gerrit']['database']['username'] do
-  Chef::Log.info("Creating Postgresql user: #{node['gerrit']['database']['username']}")
-  connection postgresql_connection_info
+pg_user node['gerrit']['database']['username'] do
+  privileges :superuser => false, :createdb => false, :login => true
   password node['gerrit']['database']['password']
-  action :create
 end
 
-postgresql_database node['gerrit']['database']['name'] do
-  Chef::Log.info("Creating Postgresql database: #{node['gerrit']['database']['name']}")
-  connection postgresql_connection_info
-  owner     node['gerrit']['database']['username']
-  encoding  "UTF-8"
-  action :create
+pg_database node['gerrit']['database']['name'] do
+  owner node['gerrit']['database']['username']
+  encoding "utf8"
+  locale "en_US.UTF8"
 end
-
-
-
