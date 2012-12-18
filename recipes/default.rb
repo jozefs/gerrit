@@ -112,6 +112,11 @@ end
 ####################################
 
 if node['gerrit']['database']['type'] == "POSTGRESQL"
+  execute "Update apt" do
+    command "apt-get update"
+    action :run
+  end
+  
   include_recipe "gerrit::postgres"
 end
 
