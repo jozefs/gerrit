@@ -18,6 +18,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+# Default the locale to en_US.utf8. If not creating the table will fail
+include_recipe "chef-locale"
+ 
 include_recipe "postgresql::server"
 include_recipe "database::postgresql"
 
