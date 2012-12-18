@@ -127,8 +127,11 @@ end
 ####################################
 # Java
 ####################################
-
-include_recipe "java"
+if platform?("ubuntu")
+  package "openjdk-6-jre-headless"
+else
+  include_recipe "java"
+end
 
 ####################################
 # Deploy
