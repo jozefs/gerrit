@@ -5,7 +5,17 @@ description      "Installs/Configures gerrit"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "0.2.0"
 
-%w{ build-essential mysql database java git maven apache2 ssl_certificates}.each do |cookbook|
+%w{
+	build-essential 
+	mysql 
+	postgresql 
+	database 
+	java 
+	git 
+	maven 
+	apache2 
+	ssl_certificates 
+	locale}.each do |cookbook|
   depends cookbook
 end
 
