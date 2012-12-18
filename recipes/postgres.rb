@@ -36,5 +36,6 @@ end
 pg_database node['gerrit']['database']['name'] do
   owner node['gerrit']['database']['username']
   encoding "utf8"
+  template "template0"
   locale "en_US.UTF8"
 end
