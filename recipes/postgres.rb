@@ -22,9 +22,11 @@
 include_recipe "locale"
 
 execute "Update locale" do
-  command " update-locale LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8"
+  command "update-locale LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8"
   action :run
 end
+
+ENV['LC_CTYPE'] = "en_US.UTF-8"
  
 include_recipe "postgresql::server"
 include_recipe "database::postgresql"
