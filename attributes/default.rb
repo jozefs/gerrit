@@ -22,8 +22,6 @@ default['gerrit']['flavor'] = "war"
 
 default['gerrit']['version'] = "2.4.2"
 
-default['gerrit']['war']['download_url'] = "http://gerrit.googlecode.com/files/gerrit-#{node['gerrit']['version']}.war"
-
 default['gerrit']['source']['repository'] = "https://gerrit.googlesource.com/gerrit"
 
 default['gerrit']['user'] = "gerrit"

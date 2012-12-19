@@ -114,9 +114,8 @@ end
 if node['gerrit']['database']['type'] == "POSTGRESQL"
   execute "Update apt" do
     command "apt-get update"
-    action :run
   end
-  
+
   include_recipe "gerrit::postgres"
 end
 
@@ -154,7 +153,7 @@ if node['gerrit']['flavor'] == "war"
 
   remote_file filename do
     owner node['gerrit']['user']
-    source node['gerrit']['war']['download_url']
+    source "http://gerrit.googlecode.com/files/gerrit-#{node['gerrit']['version']}.war"
     notifies :run, "execute[gerrit-init]", :immediately
     action :create_if_missing
   end
