@@ -35,7 +35,7 @@ if node['gerrit']['ssl']
   # don't use snakeoil CA, if specified otherwise
   if node['gerrit']['ssl_certificate']
     ssl_certificate node['gerrit']['ssl_certificate']
-    ssl_certfile_path = node['ssl_certificates']['path'] + "/" + node['gerrit']['ssl_certificate'] + ".crt"
+    ssl_certfile_path = node['ssl_certificates']['path'] + "/" + node['gerrit']['ssl_certificate'] + ".pem"
     ssl_keyfile_path  = node['ssl_certificates']['path'] + "/" + node['gerrit']['ssl_certificate'] + ".key"
   end
 end
