@@ -41,6 +41,9 @@ default['gerrit']['canonicalGitUrl'] = nil
 default['gerrit']['ssl'] = false
 default['gerrit']['ssl_certificate'] = nil
 
+default['gerrit']['auth']['type'] = "OpenID"
+default['gerrit']['auth']['allowedOpenID'] = "https://"
+default['gerrit']['auth']['trustedOpenID'] = "https://"
 
 default['gerrit']['database']['type'] = "MYSQL"
 default['gerrit']['database']['host'] = "localhost"
