@@ -57,3 +57,16 @@ default['gerrit']['theme']['static_files'] = []
 default['gerrit']['peer_keys']['enabled'] = false
 default['gerrit']['peer_keys']['public'] = ""
 default['gerrit']['peer_keys']['private'] = ""
+
+# authentication method
+default['gerrit']['auth']['type'] = "OPENID"
+
+# LDAP configuration (use "LDAP" for authentication method)
+default['gerrit']['ldap']['server'] = "ldap://ldap.example.com"
+default['gerrit']['ldap']['accountBase'] = "ou=people,dc=example,dc=com"
+default['gerrit']['ldap']['accountPattern'] = ""
+default['gerrit']['ldap']['accountFullName'] = ""
+default['gerrit']['ldap']['accountEmailAddress'] = ""
+default['gerrit']['ldap']['groupBase'] = "ou=groups,dc=example,dc=com"
+default['gerrit']['ldap']['groupMemberPattern'] = ""
+default['gerrit']['ldap']['localUsernameToLowerCase'] = false
