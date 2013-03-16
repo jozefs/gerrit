@@ -153,7 +153,7 @@ if node['gerrit']['flavor'] == "war"
 
   remote_file filename do
     owner node['gerrit']['user']
-    source "http://gerrit.googlecode.com/files/gerrit-#{node['gerrit']['version']}.war"
+    source node['gerrit']['download_url']
     notifies :run, "execute[gerrit-init]", :immediately
     action :create_if_missing
   end
