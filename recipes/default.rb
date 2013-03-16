@@ -114,6 +114,8 @@ end
 if node['gerrit']['database']['type'] == "POSTGRESQL"
   execute "Update apt" do
     command "apt-get update"
+
+    not_if "dpkg-query -l | grep postgresql"
   end
 
   include_recipe "gerrit::postgres"
