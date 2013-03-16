@@ -48,6 +48,8 @@ default['gerrit']['database']['host'] = "localhost"
 default['gerrit']['database']['name'] = "gerrit"
 default['gerrit']['database']['username'] = "gerrit"
 default['gerrit']['database']['password'] = "gerrit"
+default['gerrit']['database']['encoding'] = "LATIN1"
+default['gerrit']['database']['locale'] = "en_US"
 
 default['gerrit']['theme']['compile_files'] = []
 default['gerrit']['theme']['static_files'] = []

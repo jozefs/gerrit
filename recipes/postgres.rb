@@ -17,16 +17,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
- 
-include_recipe "postgresql::server"
 
-execute :fix_locale do
-  command 'export LANGUAGE=en_US.UTF-8'
-  command 'export LANG=en_US.UTF-8'
-  command 'export LC_ALL=en_US.UTF-8'
-  command 'locale-gen en_US.UTF-8'
-  command 'sudo dpkg-reconfigure locales'
-end
+include_recipe "postgresql::server"
 
 pg_user node['gerrit']['database']['username'] do
   privileges :superuser => false, :createdb => false, :login => true
@@ -35,7 +27,7 @@ end
 
 pg_database node['gerrit']['database']['name'] do
   owner node['gerrit']['database']['username']
-  encoding "utf8"
+  encoding node['gerrit']['database']['encoding']
   template "template0"
-  locale "en_US.UTF8"
+  locale node['gerrit']['database']['locale']
 end
